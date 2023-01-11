@@ -5,23 +5,33 @@ function getComputerChoice{
     //returns ‘Rock’, ‘Paper’ or ‘Scissors’.
 }
 
-function playRound(playerSelection, computerSelection) {
-    
+function playRound(playerSelection, computerSelection) 
+{    
     //playerSelection ->  case-insensitive 
-    // 2 outcomes:
+    // 3 outcomes:
+    //if tie:
+    if (playerSelection == computerSelection){
+        return "You Tie"
+    }
     //if win:
-    //      return "You Win! Paper beats Rock"...
-    //if lose:
-    //      return "You Lose! Paper beats Rock"...
+    else if ((playerSelection  == "Rock" && computerSelection == "Scissors") ||
+            (playerSelection  == "Paper" && computerSelection == "Rock") ||
+            (playerSelection  == "Scissors" && computerSelection == "Paper") ) {
+        return `You win ${playerSelection} beats ${computerSelection}`
+    }
+   //if lose:
+    else {
+        return `You Lose! ${computerSelection} beats ${playerSelection}}`
+    }
   }
 
 function game(){
 // score variable
-
-    // for (let i = 0; i < 5; i++) {
-        // let playerSelection;
-        // let computerSelection;
-        //playRound(playerSelection, computerSelection) 5 times
-        //update score variable each round
-    //  }
+// let score = 0;
+//     for (let i = 0; i < 5; i++) {
+//         let playerSelection;
+//         let computerSelection;
+//         playRound(playerSelection, computerSelection) 5 times
+//         update score variable each round
+//      }
 }
