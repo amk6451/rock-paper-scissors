@@ -1,9 +1,23 @@
 //pseudocode
 
-function getComputerChoice{
-    //random roll(1,2,3)
+// getPlayerChoice();
+// console.log("hello all");
+// console.log("this is awesome");
+
+
+function getComputerChoice() {
+    //random rolls (0 == Rock ,1 == Paper ,2 == Scissors)
     //returns ‘Rock’, ‘Paper’ or ‘Scissors’.
+    // Math.floor(Math.random() * (max_number-min_number +1) + min_number);
+    return Math.floor(Math.random() * 3);
 }
+
+
+function getPlayerChoice() {
+    let choice = prompt("Choose Rock, Paper, or Scissors:");
+    // console.log(choice);
+    return choice;
+    }
 
 function playRound(playerSelection, computerSelection) 
 {    
