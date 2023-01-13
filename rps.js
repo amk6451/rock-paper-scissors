@@ -1,52 +1,61 @@
-//pseudocode
-
-// getPlayerChoice();
-// console.log("hello all");
-// console.log("this is awesome");
-
+game();
 
 function getComputerChoice() {
+    const computer = ["rock", "paper", "scissors"];
     //random rolls (0 == Rock ,1 == Paper ,2 == Scissors)
-    //returns ‘Rock’, ‘Paper’ or ‘Scissors’.
+
     // Math.floor(Math.random() * (max_number-min_number +1) + min_number);
-    const computer = ["Rock", "Paper", "Scissor"];
     return computer[(Math.floor(Math.random() * 3))];
 }
 
 
 function getPlayerChoice() {
     let choice = prompt("Choose Rock, Paper, or Scissors:");
-    // console.log(choice);
     return choice;
     }
 
 function playRound(playerSelection, computerSelection) 
 {    
     //playerSelection ->  case-insensitive 
+    playerSelection = playerSelection.toLowerCase();
     // 3 outcomes:
     //if tie:
     if (playerSelection == computerSelection){
-        return "You Tie"
+        console.log(`You tied, ` + `${playerSelection} ties ${computerSelection}!`);
+        return 0.5
     }
     //if win:
-    else if ((playerSelection  == "Rock" && computerSelection == "Scissors") ||
-            (playerSelection  == "Paper" && computerSelection == "Rock") ||
-            (playerSelection  == "Scissors" && computerSelection == "Paper") ) {
-        return `You win ${playerSelection} beats ${computerSelection}`
+    else if ((playerSelection  == "rock" && computerSelection == "scissors") ||
+            (playerSelection  == "paper" && computerSelection == "rock") ||
+            (playerSelection  == "scissors" && computerSelection == "paper") ) {
+            console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+        return 1
     }
    //if lose:
     else {
-        return `You Lose! ${computerSelection} beats ${playerSelection}}`
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+        return 0
     }
   }
 
 function game(){
-// score variable
-// let score = 0;
-//     for (let i = 0; i < 5; i++) {
-//         let playerSelection;
-//         let computerSelection;
-//         playRound(playerSelection, computerSelection) 5 times
-//         update score variable each round
-//      }
+
+//initialize score
+let score = 0;
+    for (let i = 0; i < 5; i++) {
+   
+        score += playRound(getPlayerChoice(),getComputerChoice());
+        console.log("Current score: " + score);
+
+        // playRound(playerSelection, computerSelection) 5 times
+        // update score variable each round
+     }
+     if (score > 2.5){
+        console.log('you won with ' + score + " wins and " + (5 - score) + " loss(es)!");
+     }
+     if (score < 2.5){
+        console.log('you lost with ' + score + " win(s) and " + (5 - score) + " losses!");
+     }
+     if (score == 2.5)
+        console.log('you tied with ' + score + " wins and " + (5 - score) + " losses!");
 }
