@@ -9,7 +9,8 @@ function getComputerChoice() {
     //random rolls (0 == Rock ,1 == Paper ,2 == Scissors)
     //returns ‘Rock’, ‘Paper’ or ‘Scissors’.
     // Math.floor(Math.random() * (max_number-min_number +1) + min_number);
-    return Math.floor(Math.random() * 3);
+    const computer = ["Rock", "Paper", "Scissor"];
+    return computer[(Math.floor(Math.random() * 3))];
 }
 
 
