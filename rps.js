@@ -1,4 +1,4 @@
-game();
+
 
 function getComputerChoice() {
     const computer = ["rock", "paper", "scissors"];
@@ -9,10 +9,10 @@ function getComputerChoice() {
 }
 
 
-function getPlayerChoice() {
-    let choice = prompt("Choose Rock, Paper, or Scissors:");
-    return choice;
-    }
+// function getPlayerChoice() {
+//     let choice = prompt("Choose Rock, Paper, or Scissors:");
+//     return choice;
+//     }
 
 function playRound(playerSelection, computerSelection) 
 {    
@@ -38,24 +38,46 @@ function playRound(playerSelection, computerSelection)
     }
   }
 
+
+
+
 function game(){
 
-//initialize score
 let score = 0;
-    for (let i = 0; i < 5; i++) {
-   
-        score += playRound(getPlayerChoice(),getComputerChoice());
-        console.log("Current score: " + score);
+const buttons = document.querySelectorAll('button');
+buttons.forEach( (button) => {
+    
+    button.addEventListener('click', () => {
+        playerSelection = button.id;
+        computerSelection = getComputerChoice();
 
-        // playRound(playerSelection, computerSelection) 5 times
-        // update score variable each round
-     }
-     if (score > 2.5){
-        console.log('you won with ' + score + " wins and " + (5 - score) + " loss(es)!");
-     }
-     if (score < 2.5){
-        console.log('you lost with ' + score + " win(s) and " + (5 - score) + " losses!");
-     }
-     if (score == 2.5)
-        console.log('you tied with ' + score + " wins and " + (5 - score) + " losses!");
-}
+        console.log(playRound(playerSelection, computerSelection));
+    }
+    );
+
+});
+
+
+};
+
+
+//initialize score
+
+//     // for (let i = 0; i < 5; i++) {
+   
+        // score += playRound(getPlayerChoice(),getComputerChoice());
+        // console.log("Current score: " + score);
+
+//         // playRound(playerSelection, computerSelection) 5 times
+//         // update score variable each round
+//     //  }
+//      if (score > 2.5){
+//         console.log('you won with ' + score + " wins and " + (5 - score) + " loss(es)!");
+//      }
+//      if (score < 2.5){
+//         console.log('you lost with ' + score + " win(s) and " + (5 - score) + " losses!");
+//      }
+//      if (score == 2.5)
+//         console.log('you tied with ' + score + " wins and " + (5 - score) + " losses!");
+
+game();
