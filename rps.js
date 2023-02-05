@@ -124,9 +124,9 @@ function playRound(playerSelection, computerSelection, roundCount)
 
 function game(){
 
-let roundCount = 0;
-let playerScore = 0;
-let computerScore = 0;
+ roundCount = 0;
+ playerScore = 0;
+ computerScore = 0;
 
 const elementReset = document.getElementById("reset");
 
@@ -155,4 +155,6 @@ buttons.forEach( (option) => {
 
 });
 };
+
+
 game();
