@@ -19,11 +19,13 @@ function playRound(playerSelection, computerSelection, roundCount)
     const currScore = document.querySelector('#scoreCard');
     let displRound = document.createElement('div');
     displRound.classList.add('Round');
+
     // 3 outcomes:
 
     //if tie:
     if (playerSelection == computerSelection){
         displRound.textContent = `Round ${roundCount}: You tied, ` + `${playerSelection} ties ${computerSelection}!`;
+        displRound.setAttribute('style','color: blue ;font-family: "Courier New", Courier, monospace; font-weight: bold');
         currScore.appendChild(displRound);
 
         //no points added to either player
@@ -35,6 +37,7 @@ function playRound(playerSelection, computerSelection, roundCount)
             (playerSelection  == "scissors" && computerSelection == "paper") ) {
         
             displRound.textContent = `Round ${roundCount}: You win! ${playerSelection} beats ${computerSelection}`;
+            displRound.setAttribute('style','color: #3fe242 ;font-family: "Courier New", Courier, monospace; font-weight: bold');
             currScore.appendChild(displRound);
 
         return [1,0]
@@ -43,6 +46,7 @@ function playRound(playerSelection, computerSelection, roundCount)
     else {
 
         displRound.textContent = `Round ${roundCount}: You lose! ${computerSelection} beats ${playerSelection}`;
+        displRound.setAttribute('style','color: #d43622;font-family: "Courier New", Courier, monospace; font-weight: bold');
         currScore.appendChild(displRound);
 
         return [0,1]
@@ -64,11 +68,11 @@ function playRound(playerSelection, computerSelection, roundCount)
 
 
     if(playerScore == 5) {
-        console.log('Player Wins!');
         const currWinner = document.querySelector('#winCard');
         let roundWinner = document.createElement('div');
         roundWinner.classList.add('bigWinner');
         roundWinner.textContent = `Congratulations! You Beat the Computer! Please Play Again!`;
+        roundWinner.setAttribute('style','border: 7px solid #3fe242;font-family: "Courier New", Courier, monospace; font-weight: bold');
         currWinner.appendChild(roundWinner);
 
         freeze.forEach( (buttonOption) => {
@@ -78,11 +82,11 @@ function playRound(playerSelection, computerSelection, roundCount)
     }
 
     if ((computerScore) == 5) {
-        console.log('Computer Wins!');
         const currWinner = document.querySelector('#winCard');
         let roundWinner = document.createElement('div');
         roundWinner.classList.add('bigWinner');
         roundWinner.textContent = `Sorry! You Lost and the Computer Won! Please Play Again!`;
+        roundWinner.setAttribute('style','border: 7px solid #d43622 ;font-family: "Courier New", Courier, monospace; font-weight: bold');
         currWinner.appendChild(roundWinner);
 
         freeze.forEach( (buttonOption) => {
@@ -147,16 +151,11 @@ buttons.forEach( (option) => {
         playerScore += activeRound[0];
         computerScore += activeRound[1];
 
-        console.log("the current round is " + roundCount);
-        console.log("your score is " + playerScore);
-        console.log("computer score is " + (computerScore));
         displayWinner(playerScore,computerScore);
 
     }
     );
-
 });
 };
-
 
 game();
