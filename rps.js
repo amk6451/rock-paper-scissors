@@ -1,4 +1,6 @@
 function getComputerChoice() {
+    //returns a random pick between rock, paper, or scissors
+
     const computer = ["rock", "paper", "scissors"];
     //random rolls (0 == Rock ,1 == Paper ,2 == Scissors)
 
@@ -18,11 +20,9 @@ function playRound(playerSelection, computerSelection, roundCount)
     let displRound = document.createElement('div');
     displRound.classList.add('Round');
     // 3 outcomes:
+
     //if tie:
     if (playerSelection == computerSelection){
-        
-        // console.log(`You tied, ` + `${playerSelection} ties ${computerSelection}!`);
-
         displRound.textContent = `Round ${roundCount}: You tied, ` + `${playerSelection} ties ${computerSelection}!`;
         currScore.appendChild(displRound);
 
@@ -33,8 +33,6 @@ function playRound(playerSelection, computerSelection, roundCount)
     else if ((playerSelection  == "rock" && computerSelection == "scissors") ||
             (playerSelection  == "paper" && computerSelection == "rock") ||
             (playerSelection  == "scissors" && computerSelection == "paper") ) {
-
-            // console.log(`You win! ${playerSelection} beats ${computerSelection}`);
         
             displRound.textContent = `Round ${roundCount}: You win! ${playerSelection} beats ${computerSelection}`;
             currScore.appendChild(displRound);
@@ -43,8 +41,6 @@ function playRound(playerSelection, computerSelection, roundCount)
     }
    //if lose:
     else {
-        
-        // console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
 
         displRound.textContent = `Round ${roundCount}: You lose! ${computerSelection} beats ${playerSelection}`;
         currScore.appendChild(displRound);
@@ -56,6 +52,10 @@ function playRound(playerSelection, computerSelection, roundCount)
   function displayWinner(playerScore,computerScore) {
     let totals = document.querySelector('#scoreTotals');
     let freeze = document.querySelectorAll('.option');
+
+    if (totals.hasChildNodes()) {
+        totals.removeChild(totals.firstChild);
+    }
 
     let bothScores = document.createElement('div');
     bothScores.classList.add('versus');
@@ -93,45 +93,12 @@ function playRound(playerSelection, computerSelection, roundCount)
     return
   }
 
+  function clearDom() {
 
+    roundCount = 0;
+    playerScore = 0;
+    computerScore = 0;
 
-function game(){
-
-let roundCount = 0;
-let playerScore = 0;
-let computerScore = 0;
-
-
-
-const buttons = document.querySelectorAll('.option');
-buttons.forEach( (option) => {
-    
-    option.addEventListener('click', () => {
-        playerSelection = option.id;
-        computerSelection = getComputerChoice();
-
-        roundCount += 1;
-        let activeRound = playRound(playerSelection,computerSelection,roundCount);
-        playerScore += activeRound[0];
-        computerScore += activeRound[1];
-
-        // console.log("the current round is " + roundCount);
-        // console.log("your score is " + playerScore);
-        // console.log("computer score is " + (computerScore));
-        displayWinner(playerScore,computerScore);
-
-
-
-
-    }
-    );
-
-});
-
-
-const elementReset = document.getElementById("reset");
-elementReset.addEventListener("click", clearDom);
-function clearDom() {
     let scoreCardReset = document.querySelector('#scoreCard')
     while (scoreCardReset.firstChild) {
         scoreCardReset.removeChild(scoreCardReset.firstChild);
@@ -144,9 +111,7 @@ function clearDom() {
 
       ////
     let scoreTotalsReset = document.querySelector('#scoreTotals');
-    while (scoreTotalsReset.firstChild) {
-        scoreTotalsReset.removeChild(scoreTotalsReset.firstChild);
-    }      
+        scoreTotalsReset.removeChild(scoreTotalsReset.firstChild);     
 
       //reset values back to zero
     let unfreeze = document.querySelectorAll('.option');
@@ -154,10 +119,40 @@ function clearDom() {
     unfreeze.forEach( (buttonOption) => {
         buttonOption.disabled = false;
     })
-      playerScore = 0;
-      roundCount = 0;
-      computerScore = roundCount -  playerScore;
     }
 
+
+function game(){
+
+let roundCount = 0;
+let playerScore = 0;
+let computerScore = 0;
+
+const elementReset = document.getElementById("reset");
+
+
+const buttons = document.querySelectorAll('.option');
+elementReset.addEventListener("click", clearDom);
+
+buttons.forEach( (option) => {
+    
+    option.addEventListener('click', () => {
+        playerSelection = option.id;
+        computerSelection = getComputerChoice();
+
+        roundCount += 1;
+        let activeRound = playRound(playerSelection,computerSelection,roundCount);
+        playerScore += activeRound[0];
+        computerScore += activeRound[1];
+
+        console.log("the current round is " + roundCount);
+        console.log("your score is " + playerScore);
+        console.log("computer score is " + (computerScore));
+        displayWinner(playerScore,computerScore);
+
+    }
+    );
+
+});
 };
 game();
