@@ -54,7 +54,7 @@ function playRound(playerSelection, computerSelection, roundCount)
     let freeze = document.querySelectorAll('.option');
 
     if (totals.hasChildNodes()) {
-        totals.removeChild(totals.firstChild);
+        totals.removeChild(totals.lastChild);
     }
 
     let bothScores = document.createElement('div');
@@ -111,7 +111,9 @@ function playRound(playerSelection, computerSelection, roundCount)
 
       ////
     let scoreTotalsReset = document.querySelector('#scoreTotals');
+    while (scoreTotalsReset.firstChild) {
         scoreTotalsReset.removeChild(scoreTotalsReset.firstChild);     
+    }
 
       //reset values back to zero
     let unfreeze = document.querySelectorAll('.option');
